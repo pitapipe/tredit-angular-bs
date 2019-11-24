@@ -4,17 +4,21 @@ import * as url from 'url';
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
-    serve = args.some(val => val === '--serve');
+  serve = args.some(val => val === '--serve');
 
 function createWindow(): BrowserWindow {
 
-  const electronScreen = screen;
-  const size = electronScreen.getPrimaryDisplay().workAreaSize;
+  const size = {
+    width: serve ? 1100 : 800,
+    height: 600,
+  };
 
   // Create the browser window.
   win = new BrowserWindow({
     x: 0,
     y: 0,
+    minWidth: 600,
+    minHeight: 500,
     width: size.width,
     height: size.height,
     webPreferences: {
